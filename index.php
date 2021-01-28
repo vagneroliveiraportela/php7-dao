@@ -1,11 +1,15 @@
 <?php
 require_once("config.php");
-$root = new Usuario();
-$root -> loadById(1);
- echo $root;
-/*
-$sql = new Sql();
-$usuarios = $sql->select("SELECT * FROM tb_usuarios");
-echo json_encode($usuarios);
-*/
+//$root = new Usuario();
+// carrega um usuario
+//$root -> loadById(1);
+//$list = Usuario::getList();
+ //echo json_encode($list);
+// lista de usuarios pelo login
+//$search = Usuario::search("o");
+//echo json_encode($search);
+$usuario = new Usuario();
+$usuario -> login("hoot", "12345");
+echo $usuario;
+
 ?>
