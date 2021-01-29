@@ -12,8 +12,11 @@ require_once("config.php");
 //$usuario -> login("hoot", "12345");
 //echo $usuario;
 
-$aluno=new Usuario("Aluno", "@aluno");
-$aluno->insert();
-echo $aluno;
+//$aluno=new Usuario("Aluno", "@aluno");
+//$aluno->insert();
+$usuario = new Usuario();
+$usuario -> loadById(6);
+$usuario -> update("USUARIO","$%ATUALIZADO#$%");
+echo $usuario;
 
 ?>

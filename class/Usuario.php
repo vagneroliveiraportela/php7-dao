@@ -98,6 +98,16 @@ class Usuario{
 			$data['dtcadastro']));
 
 	}
+	public function update($login, $pass){
+		$this->setDeslogin($login);
+		$this -> setDessenha($pass); 
+		$sql = new Sql();
+		$sql->query("UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASS WHERE idusuario = :ID", array(
+':LOGIN' => $this->getDeslogin(),
+':PASS' => $this ->getDessenha(),
+':ID' => $this -> getIdusuario()
+		));
+	}
 	public function __construct($login ="", $senha=""){
 		$this -> setDeslogin($login);
 		$this -> setDessenha($senha);
