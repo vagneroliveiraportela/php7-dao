@@ -8,8 +8,12 @@ require_once("config.php");
 // lista de usuarios pelo login
 //$search = Usuario::search("o");
 //echo json_encode($search);
-$usuario = new Usuario();
-$usuario -> login("hoot", "12345");
-echo $usuario;
+//$usuario = new Usuario();
+//$usuario -> login("hoot", "12345");
+//echo $usuario;
+
+$aluno=new Usuario("Aluno", "@aluno");
+$aluno->insert();
+echo $aluno;
 
 ?>

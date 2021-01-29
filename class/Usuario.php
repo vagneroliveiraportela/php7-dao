@@ -38,11 +38,7 @@ class Usuario{
 
 		if(count($results) > 0)
 		{
-			$row =  $results[0];
-			$this -> setIdusuario($row['idusuario']);
-			$this -> setDessenha($row['dessenha']);
-			$this -> setDeslogin($row['deslogin']);
-			$this -> setDtcadastro(new DateTime($row['dtcadastro']));
+			$this->setData($results[0]);
 		}
 	}
 	public static function getList(){
@@ -66,11 +62,8 @@ class Usuario{
 
 		if(count($results) > 0)
 		{
-			$row =  $results[0];
-			$this -> setIdusuario($row['idusuario']);
-			$this -> setDessenha($row['dessenha']);
-			$this -> setDeslogin($row['deslogin']);
-			$this -> setDtcadastro(new DateTime($row['dtcadastro']));
+			$this->setData($results[0]);
+			
 		}else{
 			throw new Exception("Loghin e/ou senha invalido");
 			
@@ -84,6 +77,30 @@ class Usuario{
 			"dtcadastro"=> $this-> getDtcadastro()->format("d/m/y H:i:s")
 
 		));
+	}
+	public function insert(){
+		$sql = new Sql();
+		$results = $sql -> select("CALL sp_usuarios_insert(:LOGIN, :PASS)", array(
+			':LOGIN' => $this -> getDeslogin(),
+			':PASS' => $this -> getDessenha()));
+
+		if(count($results)>0)
+		{
+			$this -> setData($results[0]);
+		}
+	}
+
+	public function setData($data){
+		$this -> setIdusuario($data['idusuario']);
+		$this -> setDessenha($data['dessenha']);
+		$this -> setDeslogin($data['deslogin']);
+		$this -> setDtcadastro(new DateTime(
+			$data['dtcadastro']));
+
+	}
+	public function __construct($login ="", $senha=""){
+		$this -> setDeslogin($login);
+		$this -> setDessenha($senha);
 	}
 }
 ?>
