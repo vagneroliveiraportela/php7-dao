@@ -16,7 +16,7 @@ require_once("config.php");
 //$aluno->insert();
 $usuario = new Usuario();
 $usuario -> loadById(6);
-$usuario -> update("USUARIO","$%ATUALIZADO#$%");
+$usuario -> delete();
 echo $usuario;
 
 ?>
